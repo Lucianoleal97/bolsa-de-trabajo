@@ -46,7 +46,7 @@ class UserType extends AbstractType
                 'choices' => $rolesChoices,
                 'data' => $rolesIds,
             ])
-            ->add('password')
+            ->add('password', null, ['data' => ''])
         ;
     }
 

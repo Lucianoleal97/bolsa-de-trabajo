@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use function Sodium\add;
 
 class UserType2 extends AbstractType
 {
@@ -28,6 +27,7 @@ class UserType2 extends AbstractType
             ->add('dni',NumberType::class)
             ->add('provincia',ChoiceType::class, [
                 'choices'=> [
+                    "Elegir su provincia..." =>"",
                     'Buenos Aires' => 'Buenos Aires',
                     'Catamarca' => 'Catamarca',
                     'Chaco' => 'Chaco',
@@ -54,15 +54,20 @@ class UserType2 extends AbstractType
             ]])
             ->add('perfil', ChoiceType::class,[
                 "choices"=>[
+                    'Elegir su perfil'=>'',
                     'perfil1'=>'perfil1',
                     'perfil2'=>'perfil2',
                     'perfil3'=>'perfil3',
                 ]])
             ->add('estudios',ChoiceType::class,[
                 'choices'=> [
+                    'Elegir su nivel de estudio'=>'',
                     'Primario'=>'Primario',
+                    'Segundario imcompleto '=>'Segundario imcompleto',
                     'Segundario'=>'Segundario',
+                    'terceario imcompleto '=>'terceario imcompleto',
                     'Terciario'=> 'Terciario',
+                    'universitario imcompleto '=>'Universitario imcompleto',
                     'Universitario'=>'Universitario',
                 ]])
             ->add('antecedentes',TextareaType::class)
