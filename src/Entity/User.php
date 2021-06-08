@@ -94,6 +94,11 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $role = [];
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
@@ -317,6 +322,18 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeRole(role $role): self
     {
         $this->roles->removeElement($role);
+
+        return $this;
+    }
+
+    public function getRole(): ?array
+    {
+        return $this->role;
+    }
+
+    public function setRole(array $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
