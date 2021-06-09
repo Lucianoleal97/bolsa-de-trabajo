@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserType2 extends AbstractType
 {
@@ -72,8 +73,29 @@ class UserType2 extends AbstractType
                 ]])
             ->add('antecedentes',TextareaType::class)
             ->add('formacion',TextareaType::class)
-            ->add('cv',FileType::class,array('label'=>"Curriculum"))
-            ->add('diploma',FileType::class,array('label'=>"Diploma del Campus Virtual"))
+            ->add('cv',FileType::class,['label'=>"Curriculum", 'mapped' => false],
+                array("data_class" => null),
+                ['constraints' => [
+                new File([
+                    'maxSize' => '1024k',
+                    'mimeTypes' => [
+                    'application/pdf',
+                    'application/x-pdf',
+                    ],
+                    'mimeTypesMessage' => 'Please upload a valid PDF document',
+                ])]]
+            )
+           ->add('diploma',FileType::class,['label'=>"Diploma del Campus Virtual",'mapped' => false],
+                array("data_class" => null),
+                ['constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])]])
         ;
     }
 
