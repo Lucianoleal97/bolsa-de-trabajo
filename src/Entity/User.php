@@ -90,11 +90,6 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
     private $diploma;
 
     /**
-     * @ORM\ManyToMany(targetEntity=role::class, inversedBy="users")
-     */
-    private $roles;
-
-    /**
      * @ORM\Column(type="json")
      */
     private $role = [];
@@ -102,6 +97,10 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+    }
+    public function __toString(): string
+    {
+        return $this->email.' '.$this->perfil;
     }
 
     public function getId(): ?int
@@ -301,15 +300,6 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|role[]
      */
-    public function getRoles(): Collection
-    {
-        return $this->roles;
-    }
-
-    public function getRolesObjects() {
-        return $this->roles;
-    }
-
     public function addRole(role $role): self
     {
         if (!$this->roles->contains($role)) {
@@ -329,6 +319,7 @@ class User //implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRole(): ?array
     {
         return $this->role;
+        $role[] ='ROlE_USER';
     }
 
     public function setRole(array $role): self

@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Postulante{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Postulante</h1>
 
     <table class="table">
         <tbody>
@@ -58,9 +58,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <a href="{{ path('admin') }}">Volver a la lista</a>
 {% endblock %}

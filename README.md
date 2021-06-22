@@ -4,3 +4,4 @@
 -Los roles no se cargan a los usuraios atraves de la entidad roles
 -cree una clase role para userla de rol (para ver su puedo solucionarla)
 -hay un error que no me deja logear un usuario en el login
+-el filtro de admin no funciona y no se donde esta ubicado

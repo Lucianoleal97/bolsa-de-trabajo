@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\User;
-use App\Entity\Role;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,30 +25,11 @@ class UserType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        $entity = $builder->getData();
-
-        $rolesChoices = [];
-        $roles = $this->entityManager->getRepository(Role::class)->findAll();
-        foreach ($roles as $rol) {
-            $rolesChoices[$rol->__toString()] = $rol->getId();
-        }
-        $rolesIds = [];
-        foreach ($entity->getRolesObjects() as $role) {
-            $rolesIds[] = $role->getId();
-        }
         $builder
             ->add('dni',NumberType::class)
             ->add('apellido',TextType::class)
             ->add('nombre',TextType::class)
             ->add('email',EmailType::class)
-//            ->add('roles_in_form', ChoiceType::class, [
-//                'mapped' => false,
-//                'expanded' => true,
-//                'multiple' => true,
-//                'choices' => $rolesChoices,
-//                'data' => $rolesIds,
-//            ])
             ->add('password', PasswordType::class)
         ;
     }
