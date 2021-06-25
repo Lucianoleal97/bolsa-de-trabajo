@@ -27,7 +27,8 @@ class UserCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('User')
             ->setEntityLabelInPlural('Bolsa de trabajo')
             ->setSearchFields(['provincia', 'apellido', 'email'])
-            ->setDefaultSort(['id' => 'DESC']);
+            ->setDefaultSort(['id' => 'DESC'])
+
         ;
     }
     public function configureFilters(Filters $filters): Filters

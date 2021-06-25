@@ -16,7 +16,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'admin')]
+    /**
+     * @Route("/admin", name="admin")
+     */
     public function index(UserRepository $userRepository,  PaginatorInterface $paginator, Request $request, SessionInterface $session): Response
     {
         $pagination = $this->pagination($paginator, $request, $session, 0);
@@ -26,8 +28,9 @@ class AdminController extends AbstractController
             'page'=>$pagination->getCurrentPageNumber(),
         ]);
     }
-
-    #[Route('/admin/{page<\d*>}', name: 'admin_page')]
+    /**
+     * @Route("/admin/{page<\d*>}", name="admin_page")
+     */
     public function index_page(UserRepository $userRepository,  PaginatorInterface $paginator, Request $request, SessionInterface $session, int $page): Response
     {
         $pagination = $this->pagination($paginator, $request, $session, $page);
@@ -38,7 +41,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{id}", name="admin_show", methods={"GET"})
+     * @Route("/{id}", name="admin_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(User $user): Response
     {

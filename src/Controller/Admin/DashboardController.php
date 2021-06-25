@@ -26,8 +26,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Bolsa De Trabajo');
-    }
+            ->setTitle('Bolsa De Trabajo')
+    ;}
 
     public function configureMenuItems(): iterable
     {
